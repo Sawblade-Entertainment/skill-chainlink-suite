@@ -19,6 +19,26 @@ The skills are designed to work together: ChainLink provides the project structu
 
 Skills are folders containing a `SKILL.md`. Copy or symlink the ones you want into a skills directory.
 
+**Install scripts** (copy all skills, or name the ones you want):
+
+```sh
+# macOS / Linux
+./scripts/install.sh                 # into ~/.claude/skills
+./scripts/install.sh --project       # into ./.claude/skills
+./scripts/install.sh --link vide     # symlink one skill
+```
+
+```powershell
+# Windows (PowerShell)
+.\scripts\install.ps1                # into ~\.claude\skills
+.\scripts\install.ps1 -Project       # into .\.claude\skills
+.\scripts\install.ps1 -Link vide     # symlink one skill (needs Developer Mode or admin)
+```
+
+Options: `--project`/`-Project`, `--target DIR`/`-Target DIR`, `--link`/`-Link`, `--force`/`-Force` (replace existing). Existing skills are skipped unless forced.
+
+Or copy manually:
+
 **Per project** (shared with your team via version control):
 
 ```sh
@@ -45,6 +65,7 @@ skills/
   blink/             Blink skill
   vide/              Vide skill
   roblox-builder/    Roblox Model XML skill + build_rbxmx.py helper
+scripts/             install.sh / install.ps1
 docs/                Documentation site source (MkDocs)
 mkdocs.yml           Documentation site config
 ```

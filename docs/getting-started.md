@@ -15,6 +15,35 @@ A skill is a folder containing `SKILL.md`. Put it in a skills directory:
 | `.claude/skills/<name>/` | This project (commit it to share with your team) |
 | `~/.claude/skills/<name>/` | All your projects |
 
+### Install scripts
+
+With no skill names, all skills are installed. The default target is `~/.claude/skills`, so it doesn't matter where you run them from.
+
+```sh
+# macOS / Linux
+./scripts/install.sh                 # into ~/.claude/skills
+./scripts/install.sh --project       # into ./.claude/skills
+./scripts/install.sh --link vide     # symlink one skill
+```
+
+```powershell
+# Windows (PowerShell)
+.\scripts\install.ps1                # into ~\.claude\skills
+.\scripts\install.ps1 -Project       # into .\.claude\skills
+.\scripts\install.ps1 -Link vide     # symlink (needs Developer Mode or admin)
+```
+
+| Unix | PowerShell | Meaning |
+|---|---|---|
+| `-p`, `--project` | `-Project` | Install to `./.claude/skills` instead of `~/.claude/skills` |
+| `-t`, `--target DIR` | `-Target DIR` | Install to `DIR` |
+| `-l`, `--link` | `-Link` | Symlink instead of copy |
+| `-f`, `--force` | `-Force` | Replace existing skills |
+
+With `--project`, the target is relative to the directory you run the script from, so run it from your game project.
+
+### Manually
+
 ```sh
 # project-level
 mkdir -p .claude/skills
