@@ -18,11 +18,11 @@ A skill is a folder containing `SKILL.md`. Put it in a skills directory:
 ```sh
 # project-level
 mkdir -p .claude/skills
-cp -r chainlink blink vide .claude/skills/
+cp -r chainlink blink vide roblox-builder .claude/skills/
 
 # or personal, kept in sync with this repo via symlinks
 mkdir -p ~/.claude/skills
-for s in chainlink blink vide; do ln -s "$PWD/$s" ~/.claude/skills/$s; done
+for s in chainlink blink vide roblox-builder; do ln -s "$PWD/$s" ~/.claude/skills/$s; done
 ```
 
 Install only the skills you need; they are independent.
@@ -36,8 +36,9 @@ Claude loads a skill when your request matches its `description`:
 | "Add a DataService that saves coins on leave" | `chainlink` |
 | "Add a remote event for boat input" | `blink` |
 | "Build a countdown HUD" | `vide` |
+| "Make a tree prefab as an .rbxmx" | `roblox-builder` |
 
-You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`.
+You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`, `/roblox-builder`.
 
 ## Pin tool versions
 

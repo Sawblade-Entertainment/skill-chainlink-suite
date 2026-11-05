@@ -11,6 +11,7 @@ nav:
       - ChainLink: chainlink.md
       - Blink: blink.md
       - Vide: vide.md
+      - Roblox Model XML: roblox-builder.md
   - Using them together: workflow.md
   - Contributing: contributing.md
 

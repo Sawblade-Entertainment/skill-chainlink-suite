@@ -11,6 +11,7 @@ Each skill is a single `SKILL.md` that gives Claude accurate, version-pinned kno
 | `chainlink` | CLI, `chain.toml`, sync layout, Services/Controllers, macros | [ChainLink](chainlink.md) |
 | `blink` | Typed networking with Blink v0.18.x | [Blink](blink.md) |
 | `vide` | Reactive Roblox UI with Vide | [Vide](vide.md) |
+| `roblox-builder` | Generate and validate `.rbxmx` models | [Roblox Model XML](roblox-builder.md) |
 
 ## Where to start
 

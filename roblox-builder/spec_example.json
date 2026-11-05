@@ -1,0 +1,29 @@
+{
+  "class": "Model",
+  "name": "SpecDemo",
+  "primary_part": "Core",
+  "children": [
+    {
+      "class": "Part",
+      "name": "Core",
+      "props": {
+        "Anchored": {"$type": "bool", "value": true},
+        "Size": {"$type": "Vector3", "value": [4, 2, 4]},
+        "CFrame": {"$type": "CoordinateFrame", "value": [0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1]},
+        "Material": {"$type": "token", "value": 256},
+        "Color": {"$type": "Color3uint8", "value": [70, 130, 180]}
+      }
+    },
+    {
+      "class": "Folder",
+      "name": "Contents",
+      "children": [
+        {
+          "class": "ModuleScript",
+          "name": "Config",
+          "props": {"Source": {"$type": "ProtectedString", "value": "return { Enabled = true }"}}
+        }
+      ]
+    }
+  ]
+}
