@@ -18,11 +18,11 @@ A skill is a folder containing `SKILL.md`. Put it in a skills directory:
 ```sh
 # project-level
 mkdir -p .claude/skills
-cp -r chainlink blink vide roblox-builder .claude/skills/
+cp -r skills/* .claude/skills/
 
 # or personal, kept in sync with this repo via symlinks
 mkdir -p ~/.claude/skills
-for s in chainlink blink vide roblox-builder; do ln -s "$PWD/$s" ~/.claude/skills/$s; done
+for s in skills/*/; do ln -s "$PWD/$s" ~/.claude/skills/$(basename "$s"); done
 ```
 
 Install only the skills you need; they are independent.
