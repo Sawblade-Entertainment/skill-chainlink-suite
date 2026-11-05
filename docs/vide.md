@@ -54,6 +54,9 @@ end
 return Hud
 ```
 
+!!! tip
+    Pair this skill with [Roblox UI Design](roblox-ui-design.md) for layout, color, motion and accessibility guidance.
+
 ## Rules
 
 - Keep state in module-scope sources updated from events (network handlers, input). Views never poll.

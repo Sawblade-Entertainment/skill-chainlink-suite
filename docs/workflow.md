@@ -7,6 +7,7 @@ The three skills map onto the layers of a ChainLink game.
 | Project structure, lifecycle, packages | `chainlink` | `chain.toml`, `server/*Service.luau`, `client/*Controller.luau` |
 | Client/server messaging | `blink` | `connection/*.blink` and generated modules |
 | UI | `vide` | `client/views/*.luau` |
+| UI look and feel | `roblox-ui-design` | applied to every view |
 
 ## Example: a countdown HUD driven by the server
 

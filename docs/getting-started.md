@@ -65,9 +65,10 @@ Claude loads a skill when your request matches its `description`:
 | "Add a DataService that saves coins on leave" | `chainlink` |
 | "Add a remote event for boat input" | `blink` |
 | "Build a countdown HUD" | `vide` |
+| "Review this shop screen's design" | `roblox-ui-design` |
 | "Make a tree prefab as an .rbxmx" | `roblox-builder` |
 
-You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`, `/roblox-builder`.
+You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`, `/roblox-ui-design`, `/roblox-builder`.
 
 ## Pin tool versions
 
