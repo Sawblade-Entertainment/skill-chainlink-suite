@@ -1,0 +1,27 @@
+site_name: ChainLink Skill Suite
+
+theme:
+  name: terminal
+  palette: dark
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Skills:
+      - ChainLink: chainlink.md
+      - Blink: blink.md
+      - Vide: vide.md
+  - Using them together: workflow.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - admonition
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
