@@ -13,6 +13,7 @@ nav:
       - Vide: vide.md
       - Roblox UI Design: roblox-ui-design.md
       - Roblox Model XML: roblox-builder.md
+      - Roblox Game Design: roblox-game-design.md
       - Roblox Performance: roblox-performance.md
   - Using them together: workflow.md
   - Contributing: contributing.md
