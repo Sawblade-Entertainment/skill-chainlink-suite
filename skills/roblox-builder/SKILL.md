@@ -46,7 +46,7 @@ An `.rbxmx` is XML. A typical file begins with this root element and metadata:
 
 ## Build, validate, and write workflow
 1. Plan the instance hierarchy and identify all references (including `PrimaryPart`).
-2. Build it with `build_rbxmx.py` (next to this file) as a Python library, from its JSON spec CLI, or hand-write XML.
+2. Build it with `build_rbxmx.py` (next to this file) as a Python library, from its JSON spec CLI, or hand-write XML. (Do NOT generate your own builder.py)
 3. Validate that the XML is well-formed, each item referent is unique, and every non-null Ref target exists. Also review property types/enum values.
 4. Write the file and confirm the destination and existence.
 5. Summarize the created hierarchy and **always report the final written path**.
