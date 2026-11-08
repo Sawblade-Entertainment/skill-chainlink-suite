@@ -84,6 +84,7 @@ Full documentation lives in [`docs/`](docs/index.md):
 - [Vide skill](docs/vide.md)
 - [Roblox UI Design skill](docs/roblox-ui-design.md)
 - [Roblox Model XML skill](docs/roblox-builder.md)
+- [Roblox Game Design](docs/roblox-game-design.md)
 - [Roblox Performance skill](docs/roblox-performance.md)
 - [Using the skills together](docs/workflow.md)
 - [Contributing](docs/contributing.md)
