@@ -99,7 +99,3 @@ mkdocs serve
 | ChainLink | early development; use only documented flags and keys |
 | Blink | 0.18.x (v1 pre-releases use incompatible syntax) |
 | Vide | 0.4.x |
-
-## License
-
-Add a license before publishing.
