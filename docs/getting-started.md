@@ -67,8 +67,9 @@ Claude loads a skill when your request matches its `description`:
 | "Build a countdown HUD" | `vide` |
 | "Review this shop screen's design" | `roblox-ui-design` |
 | "Make a tree prefab as an .rbxmx" | `roblox-builder` |
+| "Model a treasure chest prop with metal bands" | `chainlink-model` |
 
-You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`, `/roblox-ui-design`, `/roblox-builder`.
+You can also invoke one explicitly: `/chainlink`, `/blink`, `/vide`, `/roblox-ui-design`, `/roblox-builder`, `/chainlink-model`.
 
 ## Pin tool versions
 

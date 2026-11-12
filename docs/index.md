@@ -13,6 +13,7 @@ Each skill is a single `SKILL.md` that gives Claude accurate, version-pinned kno
 | `vide` | Reactive Roblox UI with Vide | [Vide](vide.md) |
 | `roblox-ui-design` | UX/UI design rules and review checklist for Roblox interfaces | [Roblox UI Design](roblox-ui-design.md) |
 | `roblox-builder` | Generate and validate `.rbxmx` models | [Roblox Model XML](roblox-builder.md) |
+| `chainlink-model` | Model, texture, rig and export 3D assets with Blender, then verify the import in Studio | [ChainLink Model](chainlink-model.md) |
 
 ## Where to start
 

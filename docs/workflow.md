@@ -8,6 +8,7 @@ The three skills map onto the layers of a ChainLink game.
 | Client/server messaging | `blink` | `connection/*.blink` and generated modules |
 | UI | `vide` | `client/views/*.luau` |
 | UI look and feel | `roblox-ui-design` | applied to every view |
+| 3D art | `chainlink-model` | `tools/*_model.py`, `art/`, `assets/*.fbx` |
 
 ## Example: a countdown HUD driven by the server
 
