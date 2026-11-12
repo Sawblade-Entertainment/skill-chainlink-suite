@@ -1,9 +1,7 @@
 site_name: ChainLink Skill Suite
-
 theme:
   name: terminal
   palette: dark
-
 nav:
   - Home: index.md
   - Getting started: getting-started.md
@@ -14,12 +12,13 @@ nav:
       - Roblox UI Design: roblox-ui-design.md
       - Roblox Model XML: roblox-builder.md
       - ChainLink Model: chainlink-model.md
+      - Roblox Game Design: roblox-game-design.md
+      - Roblox Performance: roblox-performance.md
+      - Roblox Monetization: roblox-monetization.md
   - Using them together: workflow.md
   - Contributing: contributing.md
-
 markdown_extensions:
   - admonition
-
 plugins:
   - search
   - minify:
