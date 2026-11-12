@@ -1,6 +1,6 @@
 # ChainLink Skill Suite
 
-A collection of [Claude Code](https://claude.com/claude-code) skills for building Roblox games with [ChainLink](https://github.com/Sawblade-Entertainment/ChainLink), Sawblade Entertainment's tool/package manager, Studio sync server and Luau flavor.
+A collection of [Claude Code](https://claude.com/claude-code) skills for building Roblox games with [ChainLink](https://github.com/Sawblade-Entertainment/tool-chainlink), Sawblade Entertainment's tool/package manager, Studio sync server and Luau flavor.
 
 Each skill teaches Claude the exact conventions, CLI flags and pitfalls of one tool, so it writes code that compiles and matches the project instead of guessing from memory.
 
@@ -8,7 +8,7 @@ Each skill teaches Claude the exact conventions, CLI flags and pitfalls of one t
 
 | Skill | Covers | Use when |
 |---|---|---|
-| [`chainlink`](skills/chainlink/SKILL.md) | The `chainlink` CLI, `chain.toml`, sync layout, Services/Controllers, `use`/`new` macros | Editing a project with a `chain.toml` |
+| [`chainlink`](skills/chainlink/SKILL.md) | The `chainlink` CLI, `chain.toml`, sync layout, Services/Controllers, `use`/`new`/`asset` macros, Open Cloud asset upload and place publishing | Editing a project with a `chain.toml` |
 | [`blink`](skills/blink/SKILL.md) | [Blink](https://1axen.github.io/blink) v0.18.x `.blink` networking definitions and the generated Luau modules | Adding remote events/functions |
 | [`vide`](skills/vide/SKILL.md) | [Vide](https://centau.github.io/vide) reactive UI: sources, derives, effects, mounting | Writing Roblox UI |
 | [`roblox-ui-design`](skills/roblox-ui-design/SKILL.md) | UX/UI design guidance: layout, spacing, color, motion, accessibility, cross-platform rules, review checklist | Designing or reviewing any Roblox UI (pairs with `vide`) |

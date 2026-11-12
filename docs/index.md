@@ -1,6 +1,6 @@
 # ChainLink Skill Suite
 
-Claude Code skills for building Roblox games with [ChainLink](https://github.com/Sawblade-Entertainment/ChainLink).
+Claude Code skills for building Roblox games with [ChainLink](https://github.com/Sawblade-Entertainment/tool-chainlink).
 
 Each skill is a single `SKILL.md` that gives Claude accurate, version-pinned knowledge of one tool: the commands that exist, the syntax that compiles, and the mistakes to avoid.
 
@@ -8,7 +8,7 @@ Each skill is a single `SKILL.md` that gives Claude accurate, version-pinned kno
 
 | Skill | Purpose | Page |
 |---|---|---|
-| `chainlink` | CLI, `chain.toml`, sync layout, Services/Controllers, macros | [ChainLink](chainlink.md) |
+| `chainlink` | CLI, `chain.toml`, sync layout, Services/Controllers, macros, assets and place publishing | [ChainLink](chainlink.md) |
 | `blink` | Typed networking with Blink v0.18.x | [Blink](blink.md) |
 | `vide` | Reactive Roblox UI with Vide | [Vide](vide.md) |
 | `roblox-ui-design` | UX/UI design rules and review checklist for Roblox interfaces | [Roblox UI Design](roblox-ui-design.md) |
