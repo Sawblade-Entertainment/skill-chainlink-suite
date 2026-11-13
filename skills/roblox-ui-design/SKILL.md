@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-design
-description: UX/UI design guidance for Roblox interfaces — layout, hierarchy, spacing, color, typography, motion, feedback, accessibility, and cross-platform (PC/mobile/console) rules. Use alongside the vide skill whenever designing, reviewing, or restyling any Roblox UI so it is intuitive, engaging, and modern.
+description: UX/UI design guidance for Roblox interfaces — layout, hierarchy, spacing, color, typography, motion, feedback, accessibility, and cross-platform (PC/mobile/console) rules, including mobile safe areas, touch controls and touch-target sizes. Use alongside the vide skill whenever designing, reviewing, or restyling any Roblox UI so it is intuitive, engaging, and modern.
 ---
 
 # Roblox UI Design
@@ -78,16 +78,31 @@ Companion to the `vide` skill: `vide` covers *how* to build; this covers *what g
 
 ## Cross-platform & accessibility
 - Detect input type via `UserInputService` (`TouchEnabled`, `GamepadEnabled`, `KeyboardEnabled`, `LastInputType`) and expose it as a source; views adapt (hide hover-only hints on touch, show button glyphs on gamepad).
-- **Mobile**: bigger targets, thumb zones (bottom corners easiest), no hover-dependent info, avoid tiny close ×s, keep critical buttons off the top edge.
+- **Mobile**: see the section below.
 - **Gamepad**: set `Selectable`, `NextSelectionUp/Down/Left/Right` or use `GuiService.SelectedObject` + auto-selection; provide a visible selection style (`SelectionImageObject` or custom accent stroke); B closes, A confirms.
 - **Keyboard**: Escape closes top-most modal; Enter confirms; Tab moves between inputs.
 - Never rely on color alone — pair with icon or text. Support `GuiService.PreferredTransparency` for panels. Keep text readable at 100% UI scale on a 720p screen.
 - Localize-ready: no text baked into images, allow ~30% string growth, use `AutomaticSize` for labels.
 
+## Mobile
+Phones are the default Roblox device; lay out for a landscape phone first, then let desktop spread out.
+- **Safe areas** (`ScreenGui.ScreenInsets`): `CoreUISafeInsets` (default) keeps clear of notches, rounded corners, the home indicator *and* the Roblox top bar — use it for HUD and menus. `DeviceSafeInsets` avoids only the hardware cut-outs. `None` only for full-bleed backgrounds and overlays that hold nothing interactive. Align custom top-bar buttons with `GuiService.TopbarInset` instead of guessing a pixel offset.
+- **Default touch controls**: the thumbstick owns the bottom-left ~third of the screen and the jump button the bottom-right corner. Never put UI under either. Arc custom action buttons around the jump button (thumb reach), largest/most-used closest to it.
+- **Touch targets**: ≥ 48px for anything tappable, ≥ 56px for frequent/combat actions, ≥ 8px between neighbours. Enforce with `UISizeConstraint.MinSize` so scale-based sizing can't shrink them on small phones; pad the hit area invisibly when the icon is smaller.
+- **Custom action buttons**: build them as normal `ImageButton`s in a touch-only ScreenGui (`Activated`, with press scale feedback) and route them to the same handler as the keyboard/gamepad binding. `ContextActionService:BindAction(..., true, ...)` touch buttons are fine for prototypes but hard to style and place.
+- **Swipes rotate the camera**: set `Active = true` on panels and scrolling lists so a drag on UI doesn't also turn the camera.
+- **No hover**: anything shown on hover needs a tap or long-press equivalent; never hide information behind hover only.
+- **Text**: don't scale body text below 14px or captions below 12px on phones; abbreviate labels or drop to icons instead.
+- **On-screen keyboard** covers the bottom half: put text inputs in the top half of the screen and keep the confirm button visible above the keyboard.
+- **Orientation**: games are landscape by default (`StarterGui.ScreenOrientation`); only support portrait if every screen is designed for it.
+- **Dense screens** (inventories, shops): fewer columns, bigger cells and a full-screen sheet instead of a floating panel.
+- Check layouts in Studio's Device Emulator at a small phone (e.g. 667×375) and a notched phone; check frame rate on a real device (see `roblox-performance` for quality tiers).
+
 ## Review checklist
 - [ ] One obvious primary action; secondary/tertiary visually subordinate.
 - [ ] All sizes in scale (or constrained offset); layouts + padding, no hand placement.
-- [ ] Hit targets ≥ 44px; safe areas respected; center of screen clear for HUD.
+- [ ] Hit targets ≥ 44px (≥ 48–56px on touch); safe areas respected; center of screen clear for HUD.
+- [ ] Nothing under the thumbstick or jump button; no hover-only info; inputs stay above the on-screen keyboard.
 - [ ] Colors from Theme only; text contrast ≥ 4.5:1; semantic colors used correctly.
 - [ ] 4-pt spacing; consistent radii; ≤ 2 fonts; type scale respected.
 - [ ] Hover/press/disabled/loading states exist; every action gives feedback.

@@ -1,6 +1,6 @@
 ---
 name: roblox-performance
-description: Roblox performance guidance for ChainLink projects. Use when the user asks about lag, frame rate, memory growth, StreamingEnabled, part/instance budgets, profiling with the MicroProfiler, leaking connections or tables, or how often to fire remotes / replicate state. Covers streaming setup, part counts, MicroProfiler habits, memory-leak patterns (connections never cleaned up) and network update rates.
+description: Roblox performance guidance for ChainLink projects. Use when the user asks about lag, frame rate, memory growth, StreamingEnabled, part/instance budgets, profiling with the MicroProfiler, leaking connections or tables, or how often to fire remotes / replicate state. Covers streaming setup, part counts, MicroProfiler habits, memory-leak patterns (connections never cleaned up), network update rates, and mobile quality tiers (low-end phones, thermal throttling, scaling effects down).
 ---
 
 # Roblox Performance
@@ -230,10 +230,96 @@ Rules:
   and the `Remotes` section of Memory. Above ~30 KB/s sustained per client is
   a warning sign.
 
+## 6. Mobile and quality tiers
+
+Design for a low-end phone first; desktop gets the headroom for free. Phones
+run out of memory and get killed rather than slowing down, and they
+throttle after 10-15 minutes of heat, so a game that is smooth for the first
+minute can still fail on mobile.
+
+- **Detect the device class on the client**, not by screen size alone:
+  touch-only = `UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled`,
+  console = `GuiService:IsTenFootInterface()`. Tablets have desktop-like
+  resolutions with phone-like hardware.
+- **The engine's graphics level belongs to the player.** It auto-adjusts
+  rendering (draw distance, shadows, some effects), and scripts cannot
+  reliably read the effective level. Don't fight it; add your own tiers for
+  the things the engine doesn't scale: your particles, lights, post-processing,
+  ambient NPCs, client effects and custom update rates.
+- **Pick the tier from measured frame time plus device class**, with
+  hysteresis so it doesn't flap, and let a settings toggle override it
+  (persist the choice).
+
+```lua
+-- client/QualityController.luau
+UserInputService = use "UserInputService"
+GuiService = use "GuiService"
+
+export type Tier = "Low" | "Medium" | "High"
+local tiers: { Tier } = { "Low", "Medium", "High" }
+
+local touchOnly = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+mod.tier = (if touchOnly or GuiService:IsTenFootInterface() then "Medium" else "High") :: Tier
+mod.override = nil :: Tier? -- set from the settings menu
+mod.changed = Instance.new("BindableEvent")
+
+local sum, frames, lowSince = 0, 0, 0.0
+
+function mod:beat(dt: number)
+    sum += dt
+    frames += 1
+    if sum < 5 or mod.override then return end
+    local avg = sum / frames
+    sum, frames = 0, 0
+    local index = table.find(tiers, mod.tier) :: number
+    if avg > 1 / 40 and index > 1 then
+        mod.tier = tiers[index - 1] -- step down fast
+        mod.changed:Fire(mod.tier)
+    elseif avg < 1 / 58 and index < #tiers then
+        lowSince += 5
+        if lowSince >= 120 then -- step up only after 2 minutes of headroom
+            lowSince = 0
+            mod.tier = tiers[index + 1]
+            mod.changed:Fire(mod.tier)
+        end
+    else
+        lowSince = 0
+    end
+end
+```
+
+What each tier changes (effects code reads `QualityController.tier`; never
+branch on device type deep in feature code):
+
+| Lever | Low | Medium | High |
+|---|---|---|---|
+| `ParticleEmitter.Rate` / burst counts | x0.25-0.5 | x0.5-0.75 | x1 |
+| Decorative `PointLight`/`SpotLight` | off | no shadows | no shadows except key lights |
+| Post-processing (`Bloom`, `DepthOfField`, `SunRays`) | off | Bloom only | on |
+| `Beam`/`Trail` lifetime and segments | halved | reduced | full |
+| Ambient NPCs, client-only props, decals | culled or nearest few | reduced | full |
+| Client effect pools / custom update rates | small / 10 Hz | medium / 15 Hz | full / 20 Hz |
+
+Other mobile rules:
+
+- Keep the always-loaded part budget at the mobile row of section 2, and
+  keep `StreamingMinRadius` low; streaming is the biggest memory lever.
+- Textures: 1024 px is the ceiling for hero assets; most props are fine at
+  512 or 256. Every unique texture and preloaded sound is resident memory.
+- Preload only the current area's assets; don't `PreloadAsync` the whole
+  catalogue on join.
+- Watch client memory in Developer Console → Memory on a real phone: a
+  steady climb on mobile is a crash later, not just a leak.
+- Profile on a real low-end Android device after 10+ minutes of play.
+  Studio's Device Emulator checks resolution and touch layout, not
+  performance.
+- UI-side mobile rules (safe areas, touch controls, target sizes) live in
+  the `roblox-ui-design` skill.
+
 ## How to respond
 
-- Ask for (or infer) the symptom first: frame time, memory growth, ping, or
-  load time. Each maps to a different section above.
+- Ask for (or infer) the symptom first: frame time, memory growth, ping,
+  load time, or "only on mobile". Each maps to a different section above.
 - Lead with the single highest-impact change, then a measurement to confirm
   it worked ("add `profilebegin` around the loop, re-capture, expect the
   `Heartbeat` lane under 2 ms").
@@ -246,3 +332,5 @@ Rules:
   3. Any loop over all players/parts in a per-frame callback?
   4. Any client code that assumes streamed geometry exists?
   5. Is there a MicroProfiler capture, or is this a guess?
+  6. Do effects scale down with a quality tier, and has it been run on a
+     real low-end phone?

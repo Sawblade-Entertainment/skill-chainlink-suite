@@ -1,6 +1,6 @@
 # Using the skills together
 
-The three skills map onto the layers of a ChainLink game.
+The skills map onto the layers of a ChainLink game.
 
 | Layer | Skill | Lives in |
 |---|---|---|
@@ -9,6 +9,12 @@ The three skills map onto the layers of a ChainLink game.
 | UI | `vide` | `client/views/*.luau` |
 | UI look and feel | `roblox-ui-design` | applied to every view |
 | 3D art | `chainlink-model` | `tools/*_model.py`, `art/`, `assets/*.fbx` |
+| Remote validation, anti-exploit | `roblox-security` | every `connection/*.blink` handler in `server/` |
+| PvP, weapons, abilities | `roblox-combat` | `server/CombatService.luau`, `client/CombatController.luau` |
+| Sound and music | `roblox-audio` | `assets/sfx/`, `assets/music/`, `client/AudioController.luau` |
+| Frame, memory and bandwidth budgets | `roblox-performance` | applied to every Service, Controller and map |
+| Robux purchases | `roblox-monetization` | `server/MonetizationService.luau`, `shared/Products.luau` |
+| Tests, bots, pre-publish checks | `roblox-testing` | test specs, `server/BotService.luau` |
 
 ## Example: a countdown HUD driven by the server
 

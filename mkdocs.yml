@@ -15,6 +15,10 @@ nav:
       - Roblox Game Design: roblox-game-design.md
       - Roblox Performance: roblox-performance.md
       - Roblox Monetization: roblox-monetization.md
+      - Roblox Security: roblox-security.md
+      - Roblox Combat: roblox-combat.md
+      - Roblox Audio: roblox-audio.md
+      - Roblox Testing: roblox-testing.md
   - Using them together: workflow.md
   - Contributing: contributing.md
 markdown_extensions:

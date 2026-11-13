@@ -101,17 +101,26 @@ Nothing over 500ms unless it's a celebration.
 ## Cross-platform and accessibility
 
 - Detect input via `UserInputService` (`TouchEnabled`, `GamepadEnabled`, `KeyboardEnabled`, `LastInputType`) and expose it as a source.
-- **Mobile:** bigger targets, thumb zones, no hover-only information, critical buttons off the top edge.
+- **Mobile:** see below.
 - **Gamepad:** set `Selectable` and `NextSelection*` (or `GuiService.SelectedObject`), show a visible selection style, B closes, A confirms.
 - **Keyboard:** Escape closes the top modal, Enter confirms, Tab moves between inputs.
 - Never rely on color alone. Support `GuiService.PreferredTransparency`. Stay readable at 100% UI scale on 720p.
 - Localization-ready: no text in images, allow about 30% string growth.
 
+## Mobile
+
+- **Safe areas:** `ScreenInsets = CoreUISafeInsets` for HUD and menus (clears notches, the home indicator and the Roblox top bar); `None` only for full-bleed backgrounds. Align top-bar buttons with `GuiService.TopbarInset`.
+- **Touch controls:** keep UI off the thumbstick (bottom-left) and jump button (bottom-right); arc action buttons around the jump button.
+- **Touch targets:** at least 48px, 56px for frequent or combat actions, 8px apart, enforced with `UISizeConstraint.MinSize`.
+- Panels set `Active = true` so drags don't turn the camera; no hover-only information; body text at least 14px; text inputs in the top half, above the on-screen keyboard.
+- Check layouts in the Device Emulator; check frame rate on a real phone (quality tiers are in [Roblox Performance](roblox-performance.md)).
+
 ## Review checklist
 
 - [ ] One obvious primary action; the rest visually subordinate.
 - [ ] Sizes in scale or constrained offset; layouts and padding, no hand placement.
-- [ ] Hit targets at least 44px; safe areas respected; center clear.
+- [ ] Hit targets at least 44px (48-56px on touch); safe areas respected; center clear.
+- [ ] Nothing under the thumbstick or jump button; inputs stay above the on-screen keyboard.
 - [ ] Colors from `Theme` only; contrast at least 4.5:1.
 - [ ] 4-pt spacing, consistent radii, at most 2 fonts.
 - [ ] Hover, press, disabled and loading states; every action gives feedback.

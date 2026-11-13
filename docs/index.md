@@ -14,6 +14,13 @@ Each skill is a single `SKILL.md` that gives Claude accurate, version-pinned kno
 | `roblox-ui-design` | UX/UI design rules and review checklist for Roblox interfaces | [Roblox UI Design](roblox-ui-design.md) |
 | `roblox-builder` | Generate and validate `.rbxmx` models | [Roblox Model XML](roblox-builder.md) |
 | `chainlink-model` | Model, texture, rig and export 3D assets with Blender, then verify the import in Studio | [ChainLink Model](chainlink-model.md) |
+| `roblox-game-design` | Thumbnails, core loop, launch and funnel analytics | [Roblox Game Design](roblox-game-design.md) |
+| `roblox-performance` | Streaming, instance budgets, MicroProfiler, leaks, network rates, mobile quality tiers | [Roblox Performance](roblox-performance.md) |
+| `roblox-monetization` | Game passes, developer products, safe `ProcessReceipt`, Premium | [Roblox Monetization](roblox-monetization.md) |
+| `roblox-security` | Remote validation, rate limits, server authority against exploiters | [Roblox Security](roblox-security.md) |
+| `roblox-combat` | Server-authoritative hits, lag compensation, exploit-proof weapons | [Roblox Combat](roblox-combat.md) |
+| `roblox-audio` | Sound effects, music, mixing and audio permissions | [Roblox Audio](roblox-audio.md) |
+| `roblox-testing` | Multi-client local tests, simulated latency and PvP bots | [Roblox Testing](roblox-testing.md) |
 
 ## Where to start
 
